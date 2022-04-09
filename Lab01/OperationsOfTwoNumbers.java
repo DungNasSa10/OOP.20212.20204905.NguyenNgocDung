@@ -1,6 +1,7 @@
-package lab1;
-
 // 2.2.5
+
+package Lab01;
+
 import java.util.Scanner;
 
 public class OperationsOfTwoNumbers {

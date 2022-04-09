@@ -1,8 +1,9 @@
-package lab1;
-
-
 // Example 3: HelloNameDialog.java
+
+package Lab01;
+
 import javax.swing.JOptionPane;
+
 public class HelloNameDialog {
 	public static void main(String[] args) {
 		String result;

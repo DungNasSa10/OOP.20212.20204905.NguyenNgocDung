@@ -1,7 +1,7 @@
-package lab1;
-
-
 //Example 1: HelloWorld.java
+
+package Lab01;
+
 //Text-printing program
 public class HelloWorld {
 	public static void main(String args[]) {
