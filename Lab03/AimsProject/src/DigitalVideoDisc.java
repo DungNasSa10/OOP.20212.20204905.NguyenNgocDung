@@ -1,4 +1,5 @@
-  
+import java.time.LocalDate;
+
 public class DigitalVideoDisc {
 	
 	private String title;
@@ -6,10 +7,17 @@ public class DigitalVideoDisc {
 	private String director;
 	private int length;
 	private float cost;
+	private LocalDate dateAdded;
+	private static int nbDigitalVideoDiscs = 0;
+	private int id;
+	
 	
 	public DigitalVideoDisc(String title) {
 		super();
 		this.title = title;
+		this.dateAdded = LocalDate.now();
+		nbDigitalVideoDiscs++;
+		this.id = nbDigitalVideoDiscs;
 	}
 	
 	public DigitalVideoDisc(String title, String category, float cost) {
@@ -47,4 +55,20 @@ public class DigitalVideoDisc {
 	public float getCost() {
 		return cost;
 	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setTitle(String newTitle) {
+		this.title = newTitle;
+	}
+	
+	public String toString() {
+		String stringResult = "DVD - ";
+		return title + " - " + category + " - " + director + " - " + length + ": " + cost + " $";
+	}
+	
 }
+
+

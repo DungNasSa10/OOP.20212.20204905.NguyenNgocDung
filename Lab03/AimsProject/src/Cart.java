@@ -4,6 +4,15 @@ public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 20;
 	private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
 	private int qtyOrdered = 0;
+	
+	
+	public DigitalVideoDisc[] getItemOrdered() {
+		return itemsOrdered;
+	}
+	
+	public void setItemOrdered (DigitalVideoDisc[] dvds) {
+		this.itemsOrdered = dvds;
+	}
 
 	public void addDigitalVideoDisc(DigitalVideoDisc disc) {
 		if (qtyOrdered == MAX_NUMBERS_ORDERED) {
@@ -62,4 +71,45 @@ public class Cart {
 		
 		return Math.round(cost * 100.0f) / 100.0f;
 	}
+	
+	public void sortByCost() {
+		this.itemsOrdered = DVDUtils.sortByCost(itemsOrdered);
+	}
+	
+	public void sortByTitle() {
+		itemsOrdered = DVDUtils.sortByTitle(itemsOrdered);
+	}
+	
+	public String searchById(int id) {
+		for (int i = 0; i < qtyOrdered; i++) {
+			if (itemsOrdered[i].getId() == id) {
+				return itemsOrdered[i].toString();
+			}
+		}
+		return "No matching DVD is found";
+	}
+	
+	public void print() {
+		DigitalVideoDisc[] sortedCart = new DigitalVideoDisc[qtyOrdered];
+		for (int i = 0; i < qtyOrdered; i++) {
+			sortedCart[i] = itemsOrdered[i];
+		}
+		
+		sortedCart = DVDUtils.sortByLength(sortedCart);
+		sortedCart = DVDUtils.sortByCost(sortedCart);
+		sortedCart = DVDUtils.sortByTitle(sortedCart);
+		
+		System.out.println("********************CART********************");
+		System.out.println("Ordered Items:");
+		
+		for (int i = 0; i < qtyOrdered; i++) {
+			System.out.println(i + 1 + ". DVD - " + sortedCart[i].toString());
+		}
+		
+		System.out.println("Total cost: " + this.totalCost() + " $");
+		System.out.println("********************************************");
+	}
+	
 }
+
+
