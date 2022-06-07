@@ -69,7 +69,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1");
 	}
 	
-	private static void removeDVDMenu() {
+	private static void removeMediaMenu() {
 		System.out.println("Do you want remove a medium by id or title ?");
 		System.out.println("------------------------------");
 		System.out.println("1. Remove by id");
@@ -89,7 +89,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-2");
 	}
 	
-	private static void filterDVDsMenu() {
+	private static void filterMediaMenu() {
 		System.out.println("Do you want to filter media by id or by title ?");
 		System.out.println("------------------------------");
 		System.out.println("1. Filter by id");
@@ -99,7 +99,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1-2");
 	}
 	
-	private static void sortDVDsMenu() {
+	private static void sortMediaMenu() {
 		System.out.println("Do you want to sort the cart by id or by title ?");
 		System.out.println("------------------------------");
 		System.out.println("1. Sort by title");
@@ -355,7 +355,7 @@ public class Aims {
 							System.out.println("The infomation about media in store:");
 							store.displayMedia();
 							System.out.println("------------------------------");
-							removeDVDMenu();
+							removeMediaMenu();
 							String removeCommand = myScanner.nextLine();
 							
 							if (removeCommand.equals("1")) {
@@ -418,7 +418,7 @@ public class Aims {
 					if (cartMenuCommand.equals("1")) {
 						
 						while (true) {
-							filterDVDsMenu();
+							filterMediaMenu();
 							String filteringCommand = myScanner.nextLine();
 							
 							if (filteringCommand.equals("1")) {
@@ -449,7 +449,7 @@ public class Aims {
 					} else if (cartMenuCommand.equals("2")) {
 						
 						while (true) {
-							sortDVDsMenu();
+							sortMediaMenu();
 							String sortingCommand = myScanner.nextLine();
 
 							if (sortingCommand.equals("1")) {
@@ -493,7 +493,7 @@ public class Aims {
 						userCart.print();
 						
 						while (true) {
-							removeDVDMenu();
+							removeMediaMenu();
 							String removeCommand = myScanner.nextLine();
 							
 							if (removeCommand.equals("1")) {
@@ -573,5 +573,6 @@ public class Aims {
 			}
 		}
 	}
+	
 }
 
