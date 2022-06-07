@@ -1,0 +1,31 @@
+QUESTION: Iterate through the list and print out the information of the media by using toString() method. Observe
+what happens and explain in detail. 
+ANSWER: The console prints out different kinds of information for different types of media because the parent class
+(Media) has overridden toString() method from Object class, the children classes (CompactDisc, DigitalVideoDisc, Book) have 
+then overridden the toString() method (getDetails() method in my case) from the class Media to match their data.  
+
+
+QUESTION: If the passing object is not an instance of Media, what happens?
+ANSWER: The overridden equals(Object o) method will then return false right away.
+
+
+QUESTION: Suppose we are taking this Comparable interface approach.
+
+1. What class should implement the Comparable interface?
+Answer: The class Media. So that an instance of class Media can compare itself to other Media instances.
+
+2. In those classes, how should you implement the compareTo()method be to reflect the ordering that we
+want?
+Answer: First we check if the comparison of the first field returns 0. If not then we return that comparison.
+Else we return the comparison result of the second field. For example: if this.getTitle().compareTo(that.getTitle())
+returns 0 then we return the comparison result of cost.
+
+3. Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this
+Comparable interface approach?
+Answer: No. Because we can override compareTo() only once, there is no way to implement 2 ordering rules at the same time.
+
+4.  Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing
+length, then cost. How would you modify your code to allow this?
+Answer: One way to do this is to modify the compare() method of the two classes MediaComparatorByCostTitle and 
+MediaComparatorByTitleCost. The method should check if the input instances are DigitalVideoDisc instances. If yes
+then it will apply the ordering rule for DVDs. Else it will apply the normal ordering rules for Media.

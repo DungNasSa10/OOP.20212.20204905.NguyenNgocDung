@@ -34,5 +34,18 @@ public class Disc extends Media {
 	public String getDirector() {
 		return director;
 	}
+	
+	@Override
+	public String toString() {
+		return "Id: " + id + " - " + "Title: " + title + " - " + "Category: " + category + " - " + "Director: " + director + " - " + "Length: " + length + " - " + "Cost: " + cost + " $";
+	}
+
+	public void setLength(int length) {
+		this.length = length;
+	}
+
+	public void setDirector(String director) {
+		this.director = director;
+	}
 
 }

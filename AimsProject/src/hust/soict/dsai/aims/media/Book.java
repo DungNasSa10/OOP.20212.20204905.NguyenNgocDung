@@ -39,6 +39,11 @@ public class Book extends Media {
 		System.out.println(authorName + " isn't in the list of authors");
 	}
 	
+	@Override
+	public String toString() {
+		return "Id: " + id + " - " + "Title: " + title + " - " + "Category: " + category + " - " + " - " + "Cost: " + cost + " $";
+	}
+	
 }
 
 

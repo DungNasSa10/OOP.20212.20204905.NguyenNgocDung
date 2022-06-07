@@ -52,4 +52,26 @@ public abstract class Media {
 		this.cost = cost;
 	}
 
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public void setCost(float cost) {
+		this.cost = cost;
+	}
+	
+	public boolean isMatch(String title) {
+		String[] tokens = this.title.toLowerCase().split(" ");
+		for (String token: tokens) {
+			if (title.toLowerCase().contains(token)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

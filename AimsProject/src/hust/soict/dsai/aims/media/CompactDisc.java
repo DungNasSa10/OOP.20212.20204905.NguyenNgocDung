@@ -1,11 +1,12 @@
 package hust.soict.dsai.aims.media;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CompactDisc extends DigitalVideoDisc implements Playable {
 	
 	private String artist;
-	private ArrayList<Track> tracks = new ArrayList<Track>();
+	private List<Track> tracks = new ArrayList<Track>();
 
 	public CompactDisc(String title) {
 		super(title);
@@ -41,7 +42,7 @@ public class CompactDisc extends DigitalVideoDisc implements Playable {
 			System.out.println("The track " + track.getTitle() + " is already in the list of tracks");
 		} else {
 			tracks.add(track);
-			System.out.println("Successfully added the trach " + track.getTitle() + " to the list of tracks");
+			System.out.println("Successfully added the track " + track.getTitle() + " to the list of tracks");
 		}
 	}
 	
