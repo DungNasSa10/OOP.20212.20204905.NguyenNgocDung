@@ -29,3 +29,12 @@ length, then cost. How would you modify your code to allow this?
 Answer: One way to do this is to modify the compare() method of the two classes MediaComparatorByCostTitle and 
 MediaComparatorByTitleCost. The method should check if the input instances are DigitalVideoDisc instances. If yes
 then it will apply the ordering rule for DVDs. Else it will apply the normal ordering rules for Media.
+
+
+	Lab 06
+	
+1. Note:The Comparableinterface is part of the Java class library. It is in java.lang package, so no import statement is needed. Please open the Java docs to see the information of this interface. Which method(s) do you need to implement from this interface?
+
+Must implement method compareTo()
+
+2. 
