@@ -9,6 +9,7 @@ import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Disc;
 import hust.soict.dsai.aims.media.Media;
+import hust.soict.dsai.aims.media.Playable;
 import hust.soict.dsai.aims.store.Store;
 import hust.soict.dsai.aims.utils.MediaUtils;
 
@@ -133,7 +134,7 @@ public class Aims {
 				System.out.println("Please enter a valid disc name");
 			} else {
 				for (Media medium: media) {
-					if (medium instanceof DigitalVideoDisc || medium instanceof CompactDisc) {
+					if (medium instanceof Playable) {
 						DigitalVideoDisc newMedium = (DigitalVideoDisc) medium;
 						newMedium.play();
 						break outer;
@@ -163,7 +164,7 @@ public class Aims {
 				"Science Fiction", "George Lucas", 87, 24.95f);
 		//cart.addDigitalVideoDisc(dvd2);
 		
-		Media dvd3 = new DigitalVideoDisc("Aladin", 
+		Media cd1 = new CompactDisc("Aladin", 
 				"Amimation", 18.99f);
 		//cart.addDigitalVideoDisc(dvd3);
 		
@@ -173,20 +174,9 @@ public class Aims {
 		book1.addAuthor("Conan Doyle");
 		book1.addAuthor("JK Rolling");
 		
-		//print total cost of the items in the cart
-		//System.out.println("Total Cost is: " + cart.totalCost());
-		
-		//Remove dvds from cart
-		//cart.removeDigitalVideoDisc(dvd1);
-		//cart.removeDigitalVideoDisc(dvd4);
-		
-		//add a list of dvds to the cart
-		//DigitalVideoDisc[] dvdList = {dvd1, dvd2, dvd3, dvd4};
-		//cart.addDigitalVideoDisc(dvdList);
-		
 		//Create a store
 		Store store = new Store();
-		store.addMedia(dvd1, dvd2, dvd3, dvd4, book1);
+		store.addMedia(dvd1, dvd2, cd1, dvd4, book1);
 		Scanner myScanner = new Scanner(System.in);
 		
 		while (true) {
@@ -277,7 +267,7 @@ public class Aims {
 								System.out.println("Please enter a valid disc name");
 							} else {
 								for (Media medium: media) {
-									if (medium instanceof DigitalVideoDisc || medium instanceof CompactDisc) {
+									if (medium instanceof Playable) {
 										DigitalVideoDisc newMedium = (DigitalVideoDisc) medium;
 										newMedium.play();
 										break outer;

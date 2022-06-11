@@ -37,7 +37,7 @@ public class Disc extends Media {
 	
 	@Override
 	public String toString() {
-		return "Id: " + id + " - " + "Title: " + title + " - " + "Category: " + category + " - " + "Director: " + director + " - " + "Length: " + length + " - " + "Cost: " + cost + " $";
+		return "Id: " + id + " - Type: " + getType() + " - Title: " + title + " - Category: " + category + " - Director: " + director + " - Length: " + length + " - Cost: " + cost + " $";
 	}
 
 	public void setLength(int length) {
@@ -46,6 +46,10 @@ public class Disc extends Media {
 
 	public void setDirector(String director) {
 		this.director = director;
+	}
+
+	public String getType() {
+		return "Disc";
 	}
 
 }

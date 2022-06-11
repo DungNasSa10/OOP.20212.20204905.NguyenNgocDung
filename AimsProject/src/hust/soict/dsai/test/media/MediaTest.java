@@ -3,6 +3,7 @@ package hust.soict.dsai.test.media;
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
+import hust.soict.dsai.aims.media.Track;
 
 public class MediaTest {
 	public static void main(String[] args) {
@@ -21,6 +22,11 @@ public class MediaTest {
 		Media dvd3 = new DigitalVideoDisc("Aladin", 
 				"Animation", 18.99f);
 		cart.addMedia(dvd3);
+		System.out.println(dvd3 instanceof Media);
+
+		Track track1 = new Track("title", 10);
+		Track track2 = new Track("title", 0);
+		System.out.println("Track compared result: " + track1.equals(track2));
 		
 		// test isMatch()
 		System.out.println(dvd1.isMatch("The Lion King"));

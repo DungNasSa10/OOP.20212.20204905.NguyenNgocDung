@@ -20,8 +20,12 @@ public class Cart {
 		if (itemsOrdered.size() == MAX_NUMBERS_ORDERED) {
 			System.out.println("The cart is full");
 		} else {
-			itemsOrdered.add(medium);
-			System.out.println("Successfully added " + medium.getTitle() + " to cart");
+			if (itemsOrdered.contains(medium)) {
+				System.out.println("The medium " + medium.getTitle() + " is already in cart");
+			} else {
+				itemsOrdered.add(medium);
+				System.out.println("Successfully added " + medium.getTitle() + " to cart");
+			}
 		}
 	}
 	

@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 public class GarbageCreator {
 	
 	public static void main(String[] args) throws IOException {
-		String filename = "AimsProject/bin/hust/soict/dsai/aims/Aims.class";
+		String filename = "bin/hust/soict/dsai/aims/Aims.class";
 		byte[] inputBytes = {0};
 		long startTime, endTime;
 		
