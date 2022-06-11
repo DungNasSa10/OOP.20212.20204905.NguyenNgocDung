@@ -68,11 +68,11 @@ public class Cart {
 	}
 	
 	public void sortByCost() {
-		this.itemsOrdered = MediaUtils.sortByCost(itemsOrdered);
+		MediaUtils.sortByCost(itemsOrdered);
 	}
 	
 	public void sortByTitle() {
-		itemsOrdered = MediaUtils.sortByTitle(itemsOrdered);
+		MediaUtils.sortByTitle(itemsOrdered);
 	}
 	
 	public Media searchById(int id) {
@@ -104,9 +104,8 @@ public class Cart {
 	}
 	
 	public void print() {
-		itemsOrdered = MediaUtils.sortByLength(itemsOrdered);
-		itemsOrdered = MediaUtils.sortByCost(itemsOrdered);
-		itemsOrdered = MediaUtils.sortByTitle(itemsOrdered);
+		//itemsOrdered = MediaUtils.sortByLength(itemsOrdered);
+		MediaUtils.sortByTitle(itemsOrdered);
 		
 		System.out.println("********************CART********************");
 		System.out.println("Ordered Items:");
@@ -120,9 +119,8 @@ public class Cart {
 	}
 	
 	public void print(Media luckyItem) {
-		itemsOrdered = MediaUtils.sortByLength(itemsOrdered);
-		itemsOrdered = MediaUtils.sortByCost(itemsOrdered);
-		itemsOrdered = MediaUtils.sortByTitle(itemsOrdered);
+		//itemsOrdered = MediaUtils.sortByLength(itemsOrdered);
+		MediaUtils.sortByTitle(itemsOrdered);
 		
 		System.out.println("********************CART********************");
 		System.out.println("Ordered Items:");

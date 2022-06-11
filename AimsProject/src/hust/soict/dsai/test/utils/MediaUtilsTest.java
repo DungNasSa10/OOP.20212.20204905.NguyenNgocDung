@@ -26,14 +26,14 @@ public class MediaUtilsTest {
 		sorted.add(dvd4);
 		sorted.add(dvd5);
 		
-		sorted = MediaUtils.sortByCost(sorted);
+		MediaUtils.sortByCost(sorted);
 		System.out.println("sort by cost: ");
 		for (Media medium: sorted) {
 			System.out.println(medium);
 		}
 		
-		sorted = MediaUtils.sortByTitle(sorted);
-		System.out.println("sort by cost: ");
+		MediaUtils.sortByTitle(sorted);
+		System.out.println("sort by title: ");
 		for (Media medium: sorted) {
 			System.out.println(medium);
 		}

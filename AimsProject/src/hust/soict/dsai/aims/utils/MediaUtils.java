@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import hust.soict.dsai.aims.media.Book;
-import hust.soict.dsai.aims.media.Disc;
 import hust.soict.dsai.aims.media.Media;
 
 
@@ -13,21 +11,31 @@ public class MediaUtils {
 	/**
 	 * helper attributes used for sorting methods
 	 */
-	private static Comparator<Media> costComparator = new Comparator<Media>() {
+
+	// Compare by cost -> title -> category
+	private static final Comparator<Media> COST_COMPARATOR = new Comparator<Media>() {
 		@Override
 		public int compare(Media medium1, Media medium2) {
-			return Float.compare(medium2.getCost(), medium1.getCost());
+			return Comparator.comparingDouble(Media::getCost).reversed()
+							.thenComparing(Media::getTitle)
+							.thenComparing(Media::getCategory)
+							.compare(medium1, medium2);
 		}
 	}; 
 	
-	private static Comparator<Media> titleComparator = new Comparator<Media>() {
+	// Compare by title -> cost -> category
+	private static Comparator<Media> TITLE_COMPARATOR = new Comparator<Media>() {
 		@Override
 		public int compare(Media medium1, Media medium2) {
-			return medium1.getTitle().compareTo(medium2.getTitle());
+			return Comparator.comparing(Media::getTitle)
+							.thenComparing(Comparator.comparingDouble(Media::getCost).reversed())
+							.thenComparing(Media::getCategory)
+							.compare(medium1, medium2);
 		}
 	}; 
 	
-	private static Comparator<Media> lengthComparator = new Comparator<Media>() {
+	/* 
+	private static final Comparator<Media> lengthComparator = new Comparator<Media>() {
 		@Override
 		public int compare(Media medium1, Media medium2) {
 			if (medium1 instanceof Book || medium2 instanceof Book) {
@@ -39,6 +47,7 @@ public class MediaUtils {
 			}
 		}
 	};
+	*/
 	
 	public static String compareByCost(Media medium1, Media medium2) {
 		float comparedResult = medium1.getCost() - medium2.getCost();
@@ -66,33 +75,32 @@ public class MediaUtils {
 	
 	
 	/**
-	 * Sort an array of DigitalVideoDisc by cost in decreasing order
-	 * @param dvds - an array of DigitalVideoDisc
-	 * @return a sorted array of DigitalVideoDisc
+	 * Sort an array of Media by cost in decreasing order, then by title -> category alphabetical order
+	 * @param media - an list of Media
+	 * @return a sorted list of Media
 	 */
-	public static List<Media> sortByCost(List<Media> media) {
-		Collections.sort(media, costComparator);
-		return media;
+	public static void sortByCost(List<Media> media) {
+		Collections.sort(media, COST_COMPARATOR);
 	}
 	
 	/**
-	 * Sort an array of DigitalVideoDisc by title in alphabetical order
-	 * @param dvds an array of DigitalVideoDisc
-	 * @return a sorted array of DigitalVideoDisc
+	 * Sort an list of Media by title in alphabetical order
+	 * @param media an list of Media
+	 * @return a sorted list of Media
 	 */
-	public static List<Media> sortByTitle(List<Media> media) {
-		Collections.sort(media, titleComparator);
-		return media;
+	public static void sortByTitle(List<Media> media) {
+		Collections.sort(media, TITLE_COMPARATOR);
 	}
 	
 	/**
-	 * Sort an array of DigitalVideoDisc by length in decreasing order
+	 * Sort an list of Disc by length in decreasing order
 	 * @param dvds
 	 * @return
-	 */
+
 	public static List<Media> sortByLength(List<Media> media) {
 		Collections.sort(media, lengthComparator);
 		return media;
 	}
+	*/
 	
 }

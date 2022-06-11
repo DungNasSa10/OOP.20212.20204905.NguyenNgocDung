@@ -69,6 +69,30 @@ public class CompactDisc extends DigitalVideoDisc {
 		}
 	}
 
+	public String getType() {
+		return "CD";
+	}
+
+	public String toString() {
+		StringBuilder tracksInfo = new StringBuilder();
+		tracksInfo.append("Tracks information: ");
+		if (tracks.size() >= 1) {
+			for (int i = 0; i < tracks.size(); i++) {
+				tracksInfo.append("\n\t" + tracks.get(i).toString());
+			} 
+		}
+
+		return ("Product ID: " + id
+		+ "\n\t" + "Type: " + getType()
+		+ "\n\t" + "Title: " + title
+		+ "\n\t" + "Category: " + category
+		+ "\n\t" + "Artist: " + artist
+		+ "\n\t" + "Director: " + director
+		+ "\n\t" + "Length: " + length
+		+ "\n\t" + "Cost: " + cost + " $"
+		+ "\n\t" + tracksInfo);
+	}
+
 }
 
 

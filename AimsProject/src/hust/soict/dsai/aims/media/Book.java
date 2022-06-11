@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Book extends Media {
 	
+	private int contentLength;
 	private List<String> authors = new ArrayList<String>();
 
 	public Book(String title) {
@@ -17,6 +18,15 @@ public class Book extends Media {
 	
 	public Book(String title, String category, float cost) {
 		super(title, category, cost);
+	}
+
+	public Book(String title, String category, int contentLength, float cost) {
+		this(title, category, cost);
+		this.contentLength = contentLength;
+	}
+
+	public int getContentLength() {
+		return contentLength;
 	}
 	
 	public void addAuthor(String authorName) {
@@ -38,10 +48,27 @@ public class Book extends Media {
 		}
 		System.out.println(authorName + " isn't in the list of authors");
 	}
+
+	public String getType() {
+		return "Book";
+	} 
 	
 	@Override
 	public String toString() {
-		return "Id: " + id + " - " + "Title: " + title + " - " + "Category: " + category + " - " + " - " + "Cost: " + cost + " $";
+		StringBuilder authorsList = new StringBuilder();
+		if (authors.size() >= 1) {
+			for (int i = 0; i < authors.size(); i++) {
+				authorsList.append(", " + authors.get(i));
+			}
+		}
+
+		return ("Product ID: " + id
+		+ "\n\t" + "Type: " + getType()
+		+ "\n" + "\t" + "Title: " + title
+		+ "\n" + "\t" + "Category: " + category
+		+ "\n" + "\t" + "Authors: " + authorsList
+		+ "\n" + "\t" + "Content Length: " + contentLength + " tokens"
+		+ "\n" + "\t" + "Cost: " + cost + " $");
 	}
 	
 }

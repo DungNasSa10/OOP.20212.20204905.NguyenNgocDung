@@ -27,4 +27,12 @@ public class Track implements Playable {
 		System.out.println("Track length: " + getLength());
 	}
 
+	public String toString() {
+		return "Type: " + getType() + "Title: " + title + " - Length: " + length;
+	}
+
+	public String getType() {
+		return "Track";
+	}
+
 }

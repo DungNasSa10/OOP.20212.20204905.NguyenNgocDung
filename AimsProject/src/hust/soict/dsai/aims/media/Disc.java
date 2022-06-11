@@ -34,10 +34,20 @@ public class Disc extends Media {
 	public String getDirector() {
 		return director;
 	}
+
+	public String getType() {
+		return "Disc";
+	}
 	
 	@Override
 	public String toString() {
-		return "Id: " + id + " - " + "Title: " + title + " - " + "Category: " + category + " - " + "Director: " + director + " - " + "Length: " + length + " - " + "Cost: " + cost + " $";
+		return ("Product ID: " + id
+		+ "\n\t" + "Type: " + getType()
+		+ "\n\t" + "Title: " + title
+		+ "\n\t" + "Category: " + category
+		+ "\n\t" + "Director: " + director
+		+ "\n\t" + "Length: " + length
+		+ "\n\t" + "Cost: " + cost + " $");
 	}
 
 	public void setLength(int length) {

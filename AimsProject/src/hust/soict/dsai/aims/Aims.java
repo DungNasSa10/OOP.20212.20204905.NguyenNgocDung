@@ -454,8 +454,7 @@ public class Aims {
 
 							if (sortingCommand.equals("1")) {
 								List<Media> sortedCart = userCart.getItemsOrdered();
-								sortedCart = MediaUtils.sortByCost(sortedCart);
-								sortedCart = MediaUtils.sortByTitle(sortedCart);
+								MediaUtils.sortByTitle(sortedCart);
 								
 								System.out.println("********************CART********************");
 								System.out.println("Ordered Items:");
@@ -470,8 +469,7 @@ public class Aims {
 	
 							} else if (sortingCommand.equals("2")) {
 								List<Media> sortedCart = userCart.getItemsOrdered();
-								sortedCart = MediaUtils.sortByTitle(sortedCart);
-								sortedCart = MediaUtils.sortByCost(sortedCart);
+								MediaUtils.sortByCost(sortedCart);
 								
 								System.out.println("********************CART********************");
 								System.out.println("Ordered Items:");
