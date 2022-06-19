@@ -29,6 +29,7 @@ public class SwingAccumulator extends JFrame {
 		cp.add(new Label("The Accumulated Sum is: "));
 		
 		tfOutput = new JTextField(10);
+		tfOutput.setText("0");
 		tfOutput.setEditable(false);
 		cp.add(tfOutput);
 		

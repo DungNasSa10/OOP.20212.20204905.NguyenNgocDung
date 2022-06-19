@@ -25,6 +25,7 @@ public class AWTAccumulator extends Frame {
 		add(new Label("The Accumulated Sum is: "));
 		
 		tfOutput = new TextField(10);
+		tfOutput.setText("0");
 		tfOutput.setEditable(false);
 		add(tfOutput);
 		
