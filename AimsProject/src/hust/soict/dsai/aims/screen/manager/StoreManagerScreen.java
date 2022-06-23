@@ -1,5 +1,4 @@
 package hust.soict.dsai.aims.screen.manager;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -7,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.Box;
@@ -20,6 +21,9 @@ import javax.swing.JPanel;
 
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
+import hust.soict.dsai.aims.screen.manager.app.AddBookToStoreApp;
+import hust.soict.dsai.aims.screen.manager.app.AddCDToStoreApp;
+import hust.soict.dsai.aims.screen.manager.app.AddDVDToStoreApp;
 import hust.soict.dsai.aims.store.Store;
 
 public class StoreManagerScreen extends JFrame {
@@ -40,9 +44,19 @@ public class StoreManagerScreen extends JFrame {
 		menu.add(new JMenuItem("View Store"));
 		
 		JMenu smUpdateStore = new JMenu("Update Store");
-		smUpdateStore.add(new JMenuItem("Add Book"));
-		smUpdateStore.add(new JMenuItem("Add CD"));
-		smUpdateStore.add(new JMenuItem("Add DVD"));
+		
+		JMenuItem addBookItem = new JMenuItem("Add Book");
+		addBookItem.addActionListener(new AddBookListener());
+		smUpdateStore.add(addBookItem);
+		
+		JMenuItem addCDItem = new JMenuItem("Add CD");
+		addCDItem.addActionListener(new AddCDListener());
+		smUpdateStore.add(addCDItem);
+		
+		JMenuItem addDVDItem = new JMenuItem("Add DVD");
+		addDVDItem.addActionListener(new AddDVDListener());
+		smUpdateStore.add(addDVDItem);
+
 		menu.add(smUpdateStore);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -79,6 +93,33 @@ public class StoreManagerScreen extends JFrame {
 		}
 		
 		return center;
+	}
+	
+	private class AddBookListener implements ActionListener {
+		
+		public void actionPerformed(ActionEvent e) {
+			new AddBookToStoreApp(store);
+			dispose();
+		}
+		
+	}
+	
+	private class AddCDListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			new AddCDToStoreApp(store);
+			dispose();
+		}
+		
+	}
+	
+	public class AddDVDListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			new AddDVDToStoreApp(store);
+			dispose();
+		}
+		
 	}
 	
 	public StoreManagerScreen(Store store) {

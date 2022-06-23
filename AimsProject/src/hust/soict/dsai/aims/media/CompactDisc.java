@@ -27,14 +27,19 @@ public class CompactDisc extends DigitalVideoDisc {
 	public CompactDisc(String title, String category, String director, int length, float cost) {
 		super(title, category, director, length, cost);
 	}
-
-	public String getArtist() {
-		return artist;
+	
+	public CompactDisc(String title, String category, String director, String artist, float cost) {
+		this(title, category, director, cost);
+		this.artist = artist;
 	}
 	
 	public CompactDisc(String title, String category, String director, String artist, int length, float cost) {
 		this(title, category, director, length, cost);
 		this.artist = artist;
+	}
+
+	public String getArtist() {
+		return artist;
 	}
 	
 	public void addTrack(Track track) {
@@ -91,6 +96,10 @@ public class CompactDisc extends DigitalVideoDisc {
 		+ "\n\t" + "Length: " + length
 		+ "\n\t" + "Cost: " + cost + " $"
 		+ "\n\t" + tracksInfo);
+	}
+
+	public List<Track> getTracks() {
+		return tracks;
 	}
 
 }

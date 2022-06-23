@@ -11,6 +11,7 @@ import java.util.StringTokenizer;
 public class Book extends Media {
 	
 	private String content;
+	private int length;
 	private Set<String> contentTokens = new TreeSet<String>();
 	private Map<String, Integer> wordFrequency = new TreeMap<String, Integer>();
 	private List<String> authors = new ArrayList<String>();
@@ -25,6 +26,11 @@ public class Book extends Media {
 	
 	public Book(String title, String category, float cost) {
 		super(title, category, cost);
+	}
+	
+	public Book(String title, String category, int length, float cost) {
+		this(title, category, cost);
+		this.length = length;
 	}
 
 	public Book(String title, String category, String content, float cost) {
@@ -121,6 +127,10 @@ public class Book extends Media {
 		+ "\n\t" + "Token List: " + contentTokens
 		+ "\n\t" + "Token Frequency: " + wordFreq
 		+ "\n\t" + "Cost: " + cost + " $");
+	}
+
+	public List<String> getAuthors() {
+		return authors;
 	}
 	
 }

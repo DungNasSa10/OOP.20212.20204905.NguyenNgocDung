@@ -1,15 +1,22 @@
 package hust.soict.dsai.aims.screen.manager;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
@@ -34,6 +41,7 @@ public class MediaStore extends JPanel {
 		
 		if (media instanceof Playable) {
 			JButton playButton = new JButton("Play");
+			playButton.addActionListener(new PlayButtonListener());
 			container.add(playButton);
 		}
 		
@@ -44,6 +52,33 @@ public class MediaStore extends JPanel {
 		this.add(container);
 		
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+	}
+	
+	private class PlayButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (media instanceof Playable) {
+				Playable playableMedia = (Playable) media;
+				JPanel p = new JPanel();
+				JDialog d = new JDialog();
+				JLabel l = new JLabel("<html>" + playableMedia.getInfo().replaceAll("\n", "<br/>") + "</html>", SwingConstants.CENTER);
+				p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+				l.setAlignmentX(Component.CENTER_ALIGNMENT);
+				p.add(Box.createVerticalGlue());
+				p.add(l);
+				p.add(Box.createVerticalGlue());
+				d.add(p);
+				d.setSize(200,200);
+				Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+				int w = d.getSize().width;
+		        int h = d.getSize().height;
+		        int x = (dim.width - w) / 2;
+		        int y = (dim.height - h) / 2;
+		        d.setLocation(x,y);
+				d.setVisible(true);
+			} 
+		}
 	}
 	
 }
