@@ -22,12 +22,12 @@
                   <items>
                         <Menu mnemonicParsing="false" text="Update Store">
                           <items>
-                            <MenuItem mnemonicParsing="false" onAction="#addBookToStore" text="Add Book" />
-                              <MenuItem mnemonicParsing="false" text="Add CD" />
-                              <MenuItem mnemonicParsing="false" onAction="#addDVDToStore" text="Add DVD" />
+                            <MenuItem mnemonicParsing="false" onAction="#addBookMenu" text="Add Book" />
+                              <MenuItem mnemonicParsing="false" onAction="#addBookMenu" text="Add CD" />
+                              <MenuItem mnemonicParsing="false" onAction="#addDVDMenu" text="Add DVD" />
                           </items>
                         </Menu>
-                    <MenuItem mnemonicParsing="false" onAction="#viewStore" text="View Store" />
+                    <MenuItem mnemonicParsing="false" onAction="#viewStoreMenu" text="View Store" />
                   </items>
                 </Menu>
               </menus>

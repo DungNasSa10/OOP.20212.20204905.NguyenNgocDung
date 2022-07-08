@@ -27,7 +27,7 @@ public class AddDVDToStoreApp extends AddItemToStoreApp {
 			public void run() {
 
 				try {
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("/hust/soict/dsai/aims/screen/manager/view/AddCDToStoreScreen.fxml"));
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/hust/soict/dsai/aims/screen/manager/view/AddDVDToStoreScreen.fxml"));
 					AddDVDToStoreController controller = new AddDVDToStoreController(store, frame);
 					loader.setController(controller);
 					Parent root = loader.load();
