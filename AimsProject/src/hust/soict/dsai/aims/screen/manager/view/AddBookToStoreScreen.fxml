@@ -153,7 +153,7 @@
                               <Insets left="10.0" />
                            </padding>
                            <children>
-                              <TextField fx:id="tfAuthors" editable="false" prefWidth="200.0" />
+                              <TextField fx:id="tfAuthors" prefWidth="200.0" />
                               <Button mnemonicParsing="false" onAction="#addAuthorBtnPressed" text="Add" />
                            </children>
                         </HBox>
