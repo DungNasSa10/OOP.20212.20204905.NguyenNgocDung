@@ -12,8 +12,8 @@ import javafx.scene.control.TextField;
 
 public abstract class AddItemToStoreController {
 	
-	protected Store store;
 	private JFrame stage;
+	protected Store store;
 	protected String title;
 	protected String category;
 	protected float cost;
@@ -63,7 +63,7 @@ public abstract class AddItemToStoreController {
 			try {
 				cost = Float.parseFloat(newValue);
 			} catch (Exception e) {
-				cost = 0f;
+				cost = 0;
 			}
 		});
 	}
