@@ -32,7 +32,7 @@ public class Track implements Playable {
 	}
 
 	public String toString() {
-		return "Type: " + getType() + "Title: " + title + " - Length: " + length;
+		return "Type: " + getType() + "Title: " + title + "Length: " + length;
 	}
 
 	public String getType() {
