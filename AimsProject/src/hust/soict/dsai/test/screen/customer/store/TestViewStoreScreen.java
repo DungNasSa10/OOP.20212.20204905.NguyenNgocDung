@@ -35,7 +35,7 @@ public class TestViewStoreScreen extends Application {
 		store = new Store();
 		cart = new Cart();
 		
-		Media media1 = new DigitalVideoDisc("a1", "a", 10);
+		Media media1 = new DigitalVideoDisc("a1", "a", "b", 10, 20);
 		Media media2 = new Book("a2", "a", 10);
 		Media media3 = new CompactDisc("a3");
 		Media media4 = new Book("a4");

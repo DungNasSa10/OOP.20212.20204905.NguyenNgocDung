@@ -1,6 +1,8 @@
 package hust.soict.dsai.aims.screen.customer.controller;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.FullCartException;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import javafx.event.ActionEvent;
@@ -46,7 +48,15 @@ public class ItemController {
 
     @FXML
     void btnAddToCartClicked(ActionEvent event) {
-    	cart.addMedia(media);
+    	try {
+			cart.addMedia(media);
+		} catch (FullCartException e) {
+    		Alert alert = new Alert(AlertType.ERROR);
+    		alert.setTitle("Adding failed");
+    		alert.setHeaderText("Error infomation: ");
+			alert.setContentText(e.getMessage());
+    		alert.showAndWait();
+		}
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Add Media To Cart");
 		alert.setHeaderText("Media infomation: ");
@@ -56,11 +66,21 @@ public class ItemController {
 
     @FXML
     void btnPlayClicked(ActionEvent event) {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Playing media");
-		alert.setHeaderText("Media infomation: ");
-		alert.setContentText(media.toString());
-		alert.showAndWait();
+    	if (media instanceof Playable) {
+    		try {
+        		Alert alert = new Alert(AlertType.INFORMATION);
+        		alert.setTitle("Playing media");
+        		alert.setHeaderText("Media infomation: ");
+    			alert.setContentText(((Playable) media).getInfo());
+        		alert.showAndWait();
+    		} catch (PlayerException e) {
+        		Alert alert = new Alert(AlertType.WARNING);
+        		alert.setTitle("Playing failed");
+        		alert.setHeaderText("Error infomation: ");
+    			alert.setContentText(e.getMessage());
+        		alert.showAndWait();
+			}
+    	}
     }
 
 }

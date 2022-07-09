@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.Math;
 
+import hust.soict.dsai.aims.exception.FullCartException;
+import hust.soict.dsai.aims.exception.NonExistingMediaException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.utils.MediaUtils;
 import javafx.beans.property.DoubleProperty;
@@ -21,9 +23,10 @@ public class Cart {
 		return itemsOrdered;
 	}
 	
-	public void addMedia(Media medium) {
+	public void addMedia(Media medium) throws FullCartException {
 		if (itemsOrdered.size() == MAX_NUMBERS_ORDERED) {
 			System.out.println("The cart is full");
+			throw new FullCartException("The cart is full");
 		} else {
 			itemsOrdered.add(medium);
 			updateTotalCost();
@@ -31,23 +34,24 @@ public class Cart {
 		}
 	}
 	
-	public void addMedia(Media ... media) {
+	public void addMedia(Media ... media) throws FullCartException {
 		for (Media medium: media) {
 			addMedia(medium);
 		}
 	}
 	
-	public void removeMedia(Media medium) {
+	public void removeMedia(Media medium) throws NonExistingMediaException {
 		if (itemsOrdered.contains(medium)) {
 			itemsOrdered.remove(medium);
 			updateTotalCost();
 			System.out.println("Successfully removed " + medium.getTitle() + " from cart");
 		} else {
 			System.out.println("Remove failed! " +  medium.getTitle() + " isn't in cart");
+			throw new NonExistingMediaException("Remove failed! " +  medium.getTitle() + " isn't in cart");
 		}
 	}
 	
-	public void removeMedia(Media ... media) {
+	public void removeMedia(Media ... media) throws NonExistingMediaException {
 		for (Media medium: media) {
 			removeMedia(medium);
 		}

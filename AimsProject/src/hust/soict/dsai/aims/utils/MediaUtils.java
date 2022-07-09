@@ -24,7 +24,7 @@ public class MediaUtils {
 	}; 
 	
 	// Compare by title -> cost -> category
-	private static Comparator<Media> TITLE_COMPARATOR = new Comparator<Media>() {
+	private static final Comparator<Media> TITLE_COMPARATOR = new Comparator<Media>() {
 		@Override
 		public int compare(Media medium1, Media medium2) {
 			return Comparator.comparing(Media::getTitle)

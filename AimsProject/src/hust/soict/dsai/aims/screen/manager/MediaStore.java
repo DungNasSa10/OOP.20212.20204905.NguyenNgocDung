@@ -15,11 +15,15 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class MediaStore extends JPanel {
 
@@ -59,24 +63,29 @@ public class MediaStore extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (media instanceof Playable) {
-				Playable playableMedia = (Playable) media;
-				JPanel p = new JPanel();
-				JDialog d = new JDialog();
-				JLabel l = new JLabel(playableMedia.getInfo(), SwingConstants.CENTER);
-				p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-				l.setAlignmentX(Component.CENTER_ALIGNMENT);
-				p.add(Box.createVerticalGlue());
-				p.add(l);
-				p.add(Box.createVerticalGlue());
-				d.add(p);
-				d.setSize(200,200);
-				Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-				int w = d.getSize().width;
-		        int h = d.getSize().height;
-		        int x = (dim.width - w) / 2;
-		        int y = (dim.height - h) / 2;
-		        d.setLocation(x,y);
-				d.setVisible(true);
+				try {
+					Playable playableMedia = (Playable) media;
+					JPanel p = new JPanel();
+					JDialog d = new JDialog();
+					JLabel l = null;
+					l = new JLabel(playableMedia.getInfo(), SwingConstants.CENTER);
+					p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+					l.setAlignmentX(Component.CENTER_ALIGNMENT);
+					p.add(Box.createVerticalGlue());
+					p.add(l);
+					p.add(Box.createVerticalGlue());
+					d.add(p);
+					d.setSize(200,200);
+					Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+					int w = d.getSize().width;
+			        int h = d.getSize().height;
+			        int x = (dim.width - w) / 2;
+			        int y = (dim.height - h) / 2;
+			        d.setLocation(x,y);
+					d.setVisible(true);
+				} catch (PlayerException e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
 			} 
 		}
 	}

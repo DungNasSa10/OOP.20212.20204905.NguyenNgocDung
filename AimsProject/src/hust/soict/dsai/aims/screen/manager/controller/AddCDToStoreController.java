@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.swing.JFrame;
 
+import hust.soict.dsai.aims.exception.DuplicatedMediaException;
 import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.Track;
 import hust.soict.dsai.aims.store.Store;
@@ -46,7 +47,15 @@ public class AddCDToStoreController extends AddItemToStoreController {
 		
 		for (Track track: tracks) {
 			if (!cd.getTracks().contains(track)) {
-				cd.addTrack(track);
+				try {
+					cd.addTrack(track);
+				} catch (DuplicatedMediaException e) {
+	        		Alert alert = new Alert(AlertType.ERROR);
+	        		alert.setTitle("Adding CD failed");
+	        		alert.setHeaderText("Error infomation: ");
+	    			alert.setContentText(e.getMessage());
+	        		alert.showAndWait();
+				}
 			} else {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Notification");
