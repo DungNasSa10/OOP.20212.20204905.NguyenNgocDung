@@ -6,13 +6,18 @@ import java.lang.Math;
 
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.utils.MediaUtils;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Cart {
 	
 	public static final int MAX_NUMBERS_ORDERED = 20;
-	private List<Media> itemsOrdered = new ArrayList<Media>();
+	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
+	private DoubleProperty totalCostProperty = new SimpleDoubleProperty();
 	
-	public List<Media> getItemsOrdered() {
+	public ObservableList<Media> getItemsOrdered() {
 		return itemsOrdered;
 	}
 	
@@ -21,6 +26,7 @@ public class Cart {
 			System.out.println("The cart is full");
 		} else {
 			itemsOrdered.add(medium);
+			updateTotalCost();
 			System.out.println("Successfully added " + medium.getTitle() + " to cart");
 		}
 	}
@@ -34,6 +40,7 @@ public class Cart {
 	public void removeMedia(Media medium) {
 		if (itemsOrdered.contains(medium)) {
 			itemsOrdered.remove(medium);
+			updateTotalCost();
 			System.out.println("Successfully removed " + medium.getTitle() + " from cart");
 		} else {
 			System.out.println("Remove failed! " +  medium.getTitle() + " isn't in cart");
@@ -56,15 +63,23 @@ public class Cart {
 		return Math.round(cost * 100.0f) / 100.0f;
 	}
 	
-	public float totalCost(Media luckyItem) {
+	public double totalCost(Media luckyItem) {
 		float cost = 0f;
 		
 		for (Media medium: itemsOrdered) {
 			cost += medium.getCost();
 		}
 		cost -= luckyItem.getCost();
-		
 		return Math.round(cost * 100.0f) / 100.0f;
+	}
+	
+	public void updateTotalCost() {
+		float totalCost = totalCost();
+		totalCostProperty.set(totalCost);
+	}
+	
+	public DoubleProperty getTotalCostProperty() {
+		return totalCostProperty;
 	}
 	
 	public void sortByCost() {
@@ -119,7 +134,6 @@ public class Cart {
 	}
 	
 	public void print(Media luckyItem) {
-		//itemsOrdered = MediaUtils.sortByLength(itemsOrdered);
 		MediaUtils.sortByTitle(itemsOrdered);
 		
 		System.out.println("********************CART********************");
@@ -144,6 +158,11 @@ public class Cart {
 			return luckyItem;
 		}
 		return null;
+	}
+	
+	public void empty() {
+		itemsOrdered.clear();
+		updateTotalCost();
 	}
 	
 }
