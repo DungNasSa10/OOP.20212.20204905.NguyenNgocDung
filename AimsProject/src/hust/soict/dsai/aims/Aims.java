@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.FullCartException;
+import hust.soict.dsai.aims.exception.NonExistingMediaException;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
@@ -135,7 +138,11 @@ public class Aims {
 				for (Media medium: media) {
 					if (medium instanceof DigitalVideoDisc || medium instanceof CompactDisc) {
 						DigitalVideoDisc newMedium = (DigitalVideoDisc) medium;
-						newMedium.play();
+						try {
+							newMedium.play();
+						} catch (PlayerException e) {
+							e.printStackTrace();
+						}
 						break outer;
 					}
 				}
@@ -215,7 +222,11 @@ public class Aims {
 									String yesNoCommand = myScanner.nextLine();
 									
 									if (yesNoCommand.equals("1")) {
-										userCart.addMedia(medium);
+										try {
+											userCart.addMedia(medium);
+										} catch (FullCartException e) {
+											e.printStackTrace();
+										}
 										break;
 									} else if (yesNoCommand.equals("0")) {
 										break;
@@ -236,7 +247,11 @@ public class Aims {
 						
 						if (media.size() != 0) {
 							for (Media medium: media) {
-								userCart.addMedia(medium);
+								try {
+									userCart.addMedia(medium);
+								} catch (FullCartException e) {
+									e.printStackTrace();
+								}
 								System.out.println("The infomation about medium with title " + title + " :");
 								System.out.println(medium);
 							}
@@ -279,7 +294,11 @@ public class Aims {
 								for (Media medium: media) {
 									if (medium instanceof DigitalVideoDisc || medium instanceof CompactDisc) {
 										DigitalVideoDisc newMedium = (DigitalVideoDisc) medium;
-										newMedium.play();
+										try {
+											newMedium.play();
+										} catch (PlayerException e) {
+											e.printStackTrace();
+										}
 										break outer;
 									}
 								}
@@ -366,7 +385,11 @@ public class Aims {
 								
 								if (medium != null) {
 									store.removeMedia(medium);
-									userCart.removeMedia(medium);
+									try {
+										userCart.removeMedia(medium);
+									} catch (NonExistingMediaException e) {
+										e.printStackTrace();
+									}
 								}
 							} else if (removeCommand.equals("2")) {
 								System.out.println("Please enter the title of medium");
@@ -380,12 +403,22 @@ public class Aims {
 										
 										if (oneOrAllCommand.equals("1")) {
 											store.removeMedia(media.get(0));
-											userCart.removeMedia(media.get(0));
+											try {
+												userCart.removeMedia(media.get(0));
+											} catch (NonExistingMediaException e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											}
 											break;
 										} else if (oneOrAllCommand.equals("2")) {
 											for (Media medium: media) {
 												store.removeMedia(medium);
-												userCart.removeMedia(medium);
+												try {
+													userCart.removeMedia(medium);
+												} catch (NonExistingMediaException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
 											}
 											break;
 										} else if (oneOrAllCommand.equals("0")) {
@@ -500,7 +533,12 @@ public class Aims {
 								Media medium = userCart.searchById(id);
 								
 								if (medium != null) {
-									userCart.removeMedia(medium);
+									try {
+										userCart.removeMedia(medium);
+									} catch (NonExistingMediaException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
 								}
 							} else if (removeCommand.equals("2")) {
 								System.out.println("Please enter the title of medium");
@@ -513,10 +551,20 @@ public class Aims {
 										String oneOrAllCommand = myScanner.nextLine();
 										
 										if (oneOrAllCommand.equals("1")) {
-											userCart.removeMedia(media.get(0));
+											try {
+												userCart.removeMedia(media.get(0));
+											} catch (NonExistingMediaException e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											}
 										} else if (oneOrAllCommand.equals("2")) {
 											for (Media medium: media) {
-												userCart.removeMedia(medium);
+												try {
+													userCart.removeMedia(medium);
+												} catch (NonExistingMediaException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
 											}
 										} else if (oneOrAllCommand.equals("0")) {
 											break;

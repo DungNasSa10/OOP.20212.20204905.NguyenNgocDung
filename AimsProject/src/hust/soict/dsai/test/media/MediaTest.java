@@ -1,11 +1,12 @@
 package hust.soict.dsai.test.media;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.FullCartException;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 
 public class MediaTest {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FullCartException {
 		//Create a new cart
 		Cart cart = new Cart();
 		

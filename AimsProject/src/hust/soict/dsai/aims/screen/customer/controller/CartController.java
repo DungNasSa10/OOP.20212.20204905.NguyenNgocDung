@@ -3,6 +3,8 @@ package hust.soict.dsai.aims.screen.customer.controller;
 import java.io.IOException;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.NonExistingMediaException;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import hust.soict.dsai.aims.store.Store;
@@ -79,17 +81,35 @@ public class CartController {
     @FXML
     void btnPlayPressed(ActionEvent event) {
     	Media media = tblMedia.getSelectionModel().getSelectedItem();
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Playing media");
-		alert.setHeaderText("Media infomation: ");
-		alert.setContentText(media.toString());
-		alert.showAndWait();
+    	if (media instanceof Playable) {
+    		try {
+        		Alert alert = new Alert(AlertType.INFORMATION);
+        		alert.setTitle("Playing media");
+        		alert.setHeaderText("Media infomation: ");
+    			alert.setContentText(((Playable) media).getInfo());
+        		alert.showAndWait();
+    		} catch (PlayerException e) {
+        		Alert alert = new Alert(AlertType.ERROR);
+        		alert.setTitle("Playing failed");
+        		alert.setHeaderText("Error infomation: ");
+    			alert.setContentText(e.getMessage());
+        		alert.showAndWait();
+			}
+    	}
     }
 
     @FXML
     void btnRemovePressed(ActionEvent event) {
     	Media media = tblMedia.getSelectionModel().getSelectedItem();
-    	cart.removeMedia(media);
+    	try {
+			cart.removeMedia(media);
+		} catch (NonExistingMediaException e) {
+    		Alert alert = new Alert(AlertType.ERROR);
+    		alert.setTitle("Removing failed");
+    		alert.setHeaderText("Error infomation: ");
+			alert.setContentText(e.getMessage());
+    		alert.showAndWait();
+		}
     }
 
     @FXML
