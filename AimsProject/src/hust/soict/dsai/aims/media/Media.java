@@ -73,5 +73,23 @@ public abstract class Media {
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Media) {
+			try {
+				Media medium = (Media) obj;
+				boolean condition1 = this.title.equals(medium.getTitle());
+				boolean condition2 = this.cost == medium.getCost();
+				return condition1 && condition2;
+			} catch (NullPointerException e) {
+				return false;
+			} catch (ClassCastException e) {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 
 }

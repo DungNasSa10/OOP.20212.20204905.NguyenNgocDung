@@ -3,6 +3,10 @@ package hust.soict.dsai.aims.media;
 import java.util.ArrayList;
 import java.util.List;
 
+import hust.soict.dsai.aims.exception.DuplicatedMediaException;
+import hust.soict.dsai.aims.exception.NonExistingMediaException;
+import hust.soict.dsai.aims.exception.PlayerException;
+
 public class CompactDisc extends DigitalVideoDisc {
 	
 	private String artist;
@@ -42,21 +46,23 @@ public class CompactDisc extends DigitalVideoDisc {
 		return artist;
 	}
 	
-	public void addTrack(Track track) {
+	public void addTrack(Track track) throws DuplicatedMediaException {
 		if (tracks.contains(track)) {
 			System.out.println("The track " + track.getTitle() + " is already in the list of tracks");
+			throw new DuplicatedMediaException("ERROR: The track " + track.getTitle() + " is already in the list of tracks");
 		} else {
 			tracks.add(track);
 			System.out.println("Successfully added the track " + track.getTitle() + " to the list of tracks");
 		}
 	}
 	
-	public void removeTrack(Track track) {
+	public void removeTrack(Track track) throws NonExistingMediaException {
 		if (tracks.contains(track)) {
 			tracks.remove(track);
 			System.out.println("Successfully removed the track " + track.getTitle() + "from the list of tracks");
 		} else {
 			System.out.println("Remove failed! " +  track.getTitle() + " isn't in cart");
+			throw new NonExistingMediaException("Remove failed! " +  track.getTitle() + " isn't in cart");
 		}
 	}
 	
@@ -68,9 +74,17 @@ public class CompactDisc extends DigitalVideoDisc {
 		return totalLength;
 	}
 	
-	public void play() {
-		for (Track track: tracks) {
-			track.play();
+	public void play() throws PlayerException {
+		if (getLength() > 0) {
+			for (Track track: tracks) {
+				try {
+					track.play();
+				} catch (PlayerException e) {
+					throw e;
+				}
+			}
+		} else {
+			throw new PlayerException("ERROR: CD length is non-positive!");
 		}
 	}
 

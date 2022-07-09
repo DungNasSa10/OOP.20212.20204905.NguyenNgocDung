@@ -19,6 +19,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import hust.soict.dsai.aims.media.Book;
+import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.screen.manager.app.AddBookToStoreApp;
@@ -139,13 +141,13 @@ public class StoreManagerScreen extends JFrame {
 	public static void main(String[] args) {
 		Store store = new Store();
 		
-		Media media1 = new DigitalVideoDisc("a1");
-		Media media2 = new DigitalVideoDisc("a2");
-		Media media3 = new DigitalVideoDisc("a3");
-		Media media4 = new DigitalVideoDisc("a4");
+		Media media1 = new DigitalVideoDisc("a1", "a", "b", 10, 20);
+		Media media2 = new Book("a2", "a", 10);
+		Media media3 = new CompactDisc("a3");
+		Media media4 = new Book("a4");
 		Media media5 = new DigitalVideoDisc("a5");
-		Media media6 = new DigitalVideoDisc("a6");
-		Media media7 = new DigitalVideoDisc("a7");
+		Media media6 = new Book("a6");
+		Media media7 = new CompactDisc("a7");
 		Media media8 = new DigitalVideoDisc("a8");
 		Media media9 = new DigitalVideoDisc("a9");
 		
